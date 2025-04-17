@@ -1,0 +1,54 @@
+/* 確認画面専用スタイル */
+.confirm-table {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.confirm-table table {
+    width: 100%;
+}
+
+.confirm-table th {
+    width: 30%;
+    background-color: #c9b8a6;
+    color: #fff;
+    padding: 15px;
+    font-weight: normal;
+}
+
+.confirm-table td {
+    padding: 15px;
+    background-color: #fff;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    background-color: #8a7a66;
+    color: white;
+    padding: 10px 40px;
+}
+
+.submit-btn:hover {
+    background-color: #776a59;
+}
+
+.back-btn {
+    background-color: transparent;
+    color: #8a7a66;
+    border: 1px solid #c9b8a6;
+    padding: 10px 40px;
+}
+
+.back-btn:hover {
+    background-color: #f5f2ee;
+}

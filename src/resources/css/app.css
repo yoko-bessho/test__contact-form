@@ -1,0 +1,35 @@
+/* 基本スタイル */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ヘッダー */
+.site-header {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+}
+
+.site-title {
+  font-size: 28px;
+  color: #8a7a66;
+  font-weight: normal;
+  text-align: center;
+  margin: 0;
+}
+
+/* メインコンテンツ */
+.site-content {
+  padding-bottom: 40px;
+}
