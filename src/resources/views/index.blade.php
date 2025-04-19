@@ -15,17 +15,22 @@
                 <input
                 type="text"
                 id="name"
-                name="first_name"
+                name="last_name"
                 placeholder="例: 山田"
-                value="{{ old('first_name') }}">
+                value="{{ old('last_name') }}">
                 <input
                 type="text"
-                name="last_name"
-                placeholder="例: 太郎">
+                name="first_name"
+                placeholder="例: 太郎"
+                value="{{  old('first_name') }}">
             </div>
-            @error('name')
-                <span class="error-message">名前エラーメッセージ</span>
+            @error('last_name')
+                <span class="error-message">{{ $message }}</span>
             @enderror
+            @error('first_name')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+
         </div>
         
         <div class="form-group">
@@ -57,9 +62,6 @@
                     その他
                 </label>
             </div>
-            @error('gender')
-                <span class="error-message">性別エラーメッセージ</span>
-            @enderror
         </div>
         
         <div class="form-group">
@@ -71,7 +73,7 @@
             placeholder="例: test@example.com"
             value="{{ old('email') }}">
             @error('email')
-                <span class="error-message">メールエラーメッセージ</span>
+                <span class="error-message">{{ $message }}</span>
             @enderror
         </div>
         
@@ -97,9 +99,16 @@
                 placeholder="例: 5678"
                 value="{{ old('tel3') }}">
             </div>
-            @error('tel')
-                <span class="error-message">phineエラーメッセージ</span>
+            @error('tel1')
+                <span class="error-message">{{ $message }}</span>
             @enderror
+            @error('tel2')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+            @error('tel3')
+                <span class="error-message">{{ $message }}</span>
+            @enderror
+
         </div>
         
         <div class="form-group">
@@ -133,12 +142,11 @@
                 name="category_id">
                     <option value="" selected disabled>選択してください</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
+                    <option value="{{ $category['id'] }}">{{ $category['content'] }}</option>
                     @endforeach
-
                 </select>
             </div>
-            @error('content')
+            @error('detail')
                 <span class="error-message">{{ $message }}</span>
             @enderror
         </div>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
 use Symfony\Component\Mime\Encoder\ContentEncoderInterface;
@@ -18,7 +18,7 @@ class ContactController extends Controller
     }
 
 
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
         $tel = $request->input('tel1').$request->input('tel2').$request->input('tel3');
         $contact = $request->only(['first_name','last_name', 'email', 'tel', 'gender','address','building','detail', 'category_id','content']);
@@ -28,7 +28,7 @@ class ContactController extends Controller
         return view('confirm', compact('contact'));
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         $tel = $request->input('tel1').$request->input('tel2').$request->input('tel3');
         $contact = $request->only(['first_name','last_name', 'email', 'tel', 'gender','address','building','detail', 'category_id','content']);
