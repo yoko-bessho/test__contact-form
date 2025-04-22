@@ -27,14 +27,14 @@ class ContactRequest extends FormRequest
         return [
             'first_name' => ['required','string','max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'gender' => ['required'],
+            'gender' => ['required', 'in:男性,女性,その他'],
             'email' =>['required', 'string','email', 'max:255'],
-            'tel1' => ['required', 'digits_between:1,5', 'numeric'],
-            'tel2' => ['required', 'digits_between:1,5', 'numeric'],
-            'tel3' => ['required', 'digits_between:1,5', 'numeric'],
+            'tel1' => ['required', 'string', 'max:5', 'regex:/^\d+$/'],
+            'tel2' => ['required', 'string', 'max:5', 'regex:/^\d+$/'],
+            'tel3' => ['required', 'string', 'max:5', 'regex:/^\d+$/'],
             'address' => ['required', 'string','max:255'],
-            'building' => ['string','max:255'],
-            'category_id' => ['required','not_in:"": 0'],
+            'building' => ['string','max:255','nullable'],
+            'category_id' => ['required', 'exists:categories,id'],
             'detail' => ['required', 'string','max:120'],
                 ];
     }
@@ -75,7 +75,7 @@ class ContactRequest extends FormRequest
 
             'detail.required' => 'お問い合わせ内容を入力してください',
             'detail.not_in' => 'お問い合わせ内容を入力してください',
-            
+
             'detail.string' => 'お問い合わせ内容を文字列で入力してください',
             'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
 

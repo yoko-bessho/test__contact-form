@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class Contact extends Model
 {
@@ -11,6 +12,7 @@ class Contact extends Model
 
     protected $fillable =[
         'category_id',
+        'user_id',
         'first_name',
         'last_name',
         'gender',
@@ -25,4 +27,5 @@ class Contact extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 }

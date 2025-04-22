@@ -5,22 +5,23 @@
 @endsection
 
 @section('content')
+
 <div class="container">
     <h2>Confirm</h2>
-    <form action="/contacts" method="post">
+    <form action="/thanks" method="post">
     @csrf
+
     @foreach ($contact as $key => $value)
         @if ($key === 'category')
             <input type="hidden" name="category_id" value="{{ $value->id }}">
-        @elseif ($key === 'gender')
-            @php
-                $genderMap = ['男性' => 1, '女性' => 2, 'その他' => 3];
-            @endphp
-            <input type="hidden" name="gender" value="{{ $genderMap[$value] }}">
         @else
             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
         @endif
     @endforeach
+    <input type="hidden" name="tel1" value="{{ $contact['tel1'] ?? '' }}">
+    <input type="hidden" name="tel2" value="{{ $contact['tel2'] ?? '' }}">
+    <input type="hidden" name="tel3" value="{{ $contact['tel3'] ?? '' }}">
+
     <div class="confirm-table">
         <table>
             <tr>
@@ -60,7 +61,7 @@
     </div>
     <div class="form-buttons">
         <button type="submit" class="submit-btn">送信</button>
-        <button type="button" class="back-btn">修正</button>
+        <button type="" class="back-btn">修正</button>
     </div>
     </form>
 </div>

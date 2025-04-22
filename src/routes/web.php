@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ContactController::class, 'index']);
-Route::get('/confirm',[ContactController::class, 'confirm']);
-Route::get('/contacts/confirm', [ContactController::class, 'thanks']);
+
+Route::post('/confirm',[ContactController::class, 'confirm']);
+Route::post('/thanks', [ContactController::class, 'store']);
+
+
 Route::get('/admin', [ContactController::class, 'admin']);
 Route::get('/auth/login', [ContactController::class, 'login']);
 Route::get('/auth/register', [ContactController::class, 'register']);
 
 
-Route::post('contacts/confirm', [ContactController::class, 'confirm']);
-Route::post('/contacts', [ContactController::class, 'store']);

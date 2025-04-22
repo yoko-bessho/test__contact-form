@@ -1,28 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\User as ModelsUser;
 use Symfony\Component\Mime\Encoder\ContentEncoderInterface;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        $contents = Contact::with('category')->get();
         $categories = Category::all();
-
         return view('index', compact('categories'));
     }
 
 
     public function confirm(ContactRequest $request)
     {
-        $tel = $request->input('tel1').$request->input('tel2').$request->input('tel3');
-        $contact = $request->only(['first_name','last_name', 'email', 'tel', 'gender','address','building','detail', 'category_id','content']);
-        $contact['tel'] = $tel;
+        $contact = $request->only([
+            'last_name', 'first_name', 'email', 'gender','address','building','detail', 'category_id']);
+
+        $contact['tel1'] = $request->input('tel1');
+        $contact['tel2'] = $request->input('tel2');
+        $contact['tel3'] = $request->input('tel3');
+        $contact['tel'] = $contact['tel1'] . $contact['tel2'] . $contact['tel3'];
+
         $contact['category'] = Category::find($request->input('category_id'));
 
         return view('confirm', compact('contact'));
@@ -30,13 +34,21 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        $tel = $request->input('tel1').$request->input('tel2').$request->input('tel3');
+        // dd($request->all());
         $contact = $request->only(['first_name','last_name', 'email', 'tel', 'gender','address','building','detail', 'category_id','content']);
-        $contact['tel'] = $tel;
+
+        $contact['tel1'] = $request->input('tel1');
+        $contact['tel2'] = $request->input('tel2');
+        $contact['tel3'] = $request->input('tel3');
+        $contact['tel'] = $contact['tel1'] . $contact['tel2'] . $contact['tel3'];
+
+        $genderMap = ['男性' => 1, '女性' => 2, 'その他' => 3];
+        $contact['gender'] = $genderMap[$contact['gender']];
+
         $contact['category'] = Category::find($request->input('category_id'));
 
-        $contact = Contact::create($contact);
-        
+        Contact::create($contact);
+
         return view('thanks');
     }
 
