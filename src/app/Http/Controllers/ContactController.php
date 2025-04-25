@@ -69,7 +69,8 @@ class ContactController extends Controller
         return view('register');
     }
 
-    public function admin(){
+    public function admin()
+    {
         return view('admin');
     }
 

@@ -1,7 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.admin-app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+@endsection
+
+@section('header-nav')
+@if (Auth::check())
+<form action="/logout" method="post">
+    @csrf
+    <button class="header-nav__button">
+        logout
+    </button>
+</form>
+@endif
 @endsection
 
 @section('content')

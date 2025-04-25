@@ -1,0 +1,127 @@
+body {
+    background-color: #f5f5f5;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.header-utilities {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.header-logo {
+    flex: 1;
+    text-align: center;
+    color: #8a7a66;
+    text-decoration: none;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.header-nav {
+    flex: 1;
+    width: 100%;
+}
+
+li {
+    margin: 10px 140px;
+}
+
+.header-nav__button {
+    width: 100%;
+    align-items: center;
+    height: 40px;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    border: solid 1px #ddd;
+}
+button {
+    cursor: pointer;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #c9b8a6;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h2 {
+    margin: 0 auto;
+    text-align: center;
+    color: #8a7a66;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+/* フォーム共通スタイル */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #c9b8a6;
+}
+
+.required {
+    color: #ff0000;
+}
+
+.error-message {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+

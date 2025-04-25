@@ -61,7 +61,7 @@
     </div>
     <div class="form-buttons">
         <button type="submit" class="submit-btn">送信</button>
-        <button type="" class="back-btn">修正</button>
+        <button type="button" onclick="history.back()" class="back-btn">修正</button>
     </div>
     </form>
 </div>

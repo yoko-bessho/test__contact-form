@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::get('/auth/login', [ContactController::class, 'login']);
 Route::get('/auth/register', [ContactController::class, 'register']);
 
 
+Route::middleware('auth')->group(function() {
+  Route::get('/admin', [AuthController::class, 'index']);
+});

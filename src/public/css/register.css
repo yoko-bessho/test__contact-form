@@ -22,6 +22,12 @@
     color: #8a7a66;
 }
 
+.form-button {
+    margin: 0 auto;
+    padding: 10px 5px;
+    width: 30%;
+}
+
 .register-btn {
     width: 100%;
     background-color: #8a7a66;

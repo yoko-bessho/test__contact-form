@@ -1,10 +1,41 @@
+main {
+    background-color: #fff;
+}
 
-/* 管理画面専用スタイル */
+.header-nav__button {
+    width: 100%;
+    align-items: center;
+    height: 40px;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    border: solid 1px #ddd;
+}
+
+
+/* テーブル共通スタイル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #c9b8a6;
+    color: #fff;
+    font-weight: normal;
+}
+
+
 .search-form {
     background-color: #fff;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
