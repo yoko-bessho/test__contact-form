@@ -38,11 +38,11 @@ return [
     'digits_between'       => ':attributeは、:min桁から:max桁にしてください。',
     'dimensions'           => ':attributeの画像サイズが無効です',
     'distinct'             => ':attributeの値が重複しています。',
-    'email'                => ':attributeは、有効なメールアドレス形式で指定してください。',
+    'email'                => ':attributeは「ユーザー名@ドメイン」形式で入力してください。',
     'ends_with'            => ':attributeは、次のうちのいずれかで終わらなければなりません。: :values',
     'exists'               => '選択された:attributeは、有効ではありません。',
     'file'                 => ':attributeはファイルでなければいけません。',
-    'filled'               => ':attributeは必須です。',
+    'filled'               => ':attributeを入力してください。',
     'gt'                   => [
         'numeric' => ':attributeは、:valueより大きくなければなりません。',
         'file'    => ':attributeは、:value KBより大きくなければなりません。',
@@ -96,7 +96,7 @@ return [
     'password'             => 'パスワードが正しくありません。',
     'present'              => ':attributeが存在している必要があります。',
     'regex'                => ':attributeには、有効な正規表現を指定してください。',
-    'required'             => ':attributeは、必ず指定してください。',
+    'required'             => ':attributeを入力してください。',
     'required_if'          => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'      => ':otherが:values以外の場合、:attributeを指定してください。',
     'required_with'        => ':valuesが指定されている場合、:attributeも指定してください。',
@@ -146,5 +146,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'お名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+    ],
 ];

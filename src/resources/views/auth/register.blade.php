@@ -43,8 +43,8 @@
             </div>
             
             <div class="form-group">
-                <label for="password">確認用パスワード</label>
-                <input id="password" type="password" name="password_confirmation" placeholder="例: coachtech123">
+                <label for="password_confirmation">確認用パスワード</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" placeholder="例: coachtech123">
                 @error('password')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
