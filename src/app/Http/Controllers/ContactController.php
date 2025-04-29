@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
 use App\Models\User as ModelsUser;
-use Symfony\Component\Mime\Encoder\ContentEncoderInterface;
 
 class ContactController extends Controller
 {
@@ -71,7 +69,9 @@ class ContactController extends Controller
 
     public function admin()
     {
-        return view('admin');
+        $categories = Category::all();
+        return view('admin', compact('categories'));
+
     }
 
 
