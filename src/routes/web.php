@@ -24,11 +24,11 @@ Route::post('/confirm',[ContactController::class, 'confirm']);
 Route::post('/thanks', [ContactController::class, 'store']);
 
 
-Route::get('/admin', [ContactController::class, 'admin']);
+// Route::get('/admin', [ContactController::class, 'admin']);
 Route::get('/auth/login', [ContactController::class, 'login']);
 Route::get('/auth/register', [ContactController::class, 'register']);
 
 
 Route::middleware('auth')->group(function() {
-  Route::get('/admin', [AuthController::class, 'index']);
+  Route::get('/admin', [ContactController::class, 'admin']);
 });

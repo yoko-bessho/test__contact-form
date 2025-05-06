@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
-use App\Models\User as ModelsUser;
 
 class ContactController extends Controller
 {
@@ -69,11 +68,10 @@ class ContactController extends Controller
 
     public function admin()
     {
+        $contacts = Contact::with('category')->get();
         $categories = Category::all();
-        return view('admin', compact('categories'));
+
+        return view('admin', compact('contacts', 'categories'));
 
     }
-
-
-
 }
