@@ -20,7 +20,7 @@
     <h2>Admin</h2>
     
     <div class="search-form">
-        <form action="{{--{{ route('admin.contacts.index') }}--}}" method="GET">
+        <form action="" method="GET">
             <div class="search-row">
                 <input type="text" name="name_email" placeholder="名前やメールアドレスを入力してください" value="{{--{{ request('name_email') }}--}}">
                 
@@ -34,12 +34,13 @@
                 </div>
                 
                 <div class="select-wrapper">
-                    <select name="inquiry_type">
+                    <select name="category_id">
                         <option value="">お問い合わせの種類</option>
-                        <option value="商品の交換について" {{--{{ request('inquiry_type') == '商品の交換について' ? 'selected' : '' }}--}}>商品の交換について</option>
-                        <option value="商品の返品について" {{--{{ request('inquiry_type') == '商品の返品について' ? 'selected' : '' }}--}}>商品の返品について</option>
-                        <option value="商品について" {{--{{ request('inquiry_type') == '商品について' ? 'selected' : '' }}--}}>商品について</option>
-                        <option value="その他" {{--{{ request('inquiry_type') == 'その他' ? 'selected' : '' }}--}}>その他</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category['id'] }}">
+                            {{ $category['content'] }}
+                        </option>
+                        @endforeach
                     </select>
                 </div>
                 
@@ -76,25 +77,25 @@
 
     <div class="contacts-table">
         <table>
-            <thead>
+            <thead class="contact-table__header">
                 <tr>
-                    <th>お名前</th>
-                    <th>性別</th>
-                    <th>メールアドレス</th>
-                    <th>お問い合わせの種類</th>
-                    <th></th>
+                    <th class="header-name">お名前</th>
+                    <th class="header-gender">性別</th>
+                    <th class="header-mail">メールアドレス</th>
+                    <th class="header-detail">お問い合わせの種類</th>
+                    <th class="header-modal">詳細</th>
                 </tr>
             </thead>
             <tbody>
-
-                <!-- <tr>
-                    <td>{{--{{ $contact->name }}--}}</td>
-                    <td>{{--{{ $contact->gender }}--}}</td>
-                    <td>{{--{{ $contact->email }}--}}</td>
-                    <td>{{--{{ $contact->inquiry_type }}--}}</td>
+                @foreach($contacts as $contact)
+                <tr>
+                    <td>{{  $contact->first_name }}{{ $contact->last_name  }}</td>
+                    <td>{{ $contact->gender }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td>{{ $contact->detail }}</td>
                     <td><a href="{{--{{ route('admin.contacts.show', $contact) }}--}}" class="detail-btn">詳細</a></td>
-                </tr> -->
-
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

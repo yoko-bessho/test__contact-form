@@ -127,17 +127,37 @@ th {
     background-color: #f5f2ee;
 }
 
+
 .contacts-table {
-    background-color: #fff;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
     border-radius: 5px;
-    overflow: hidden;
+    background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.contacts-table th {
+.contact-table__header {
     background-color: #8a7a66;
     color: white;
     font-weight: normal;
+
+}
+
+.header-name {
+    width: 20%;
+}
+.header-gender {
+    width: 10%;
+}
+.header-mail {
+    width: 20%;
+}
+.header-detail {
+    width: 40%;
+}
+.header-modal {
+    width: 10%;
 }
 
 .detail-btn {
