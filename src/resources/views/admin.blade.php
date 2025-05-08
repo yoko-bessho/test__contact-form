@@ -90,7 +90,7 @@
                 @foreach($contacts as $contact)
                 <tr>
                     <td>{{  $contact->first_name }}{{ $contact->last_name  }}</td>
-                    <td>{{ $contact->gender }}</td>
+                    <td>{{ $contact->getGenderLabelAttribute() }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->detail }}</td>
                     <td><a href="{{--{{ route('admin.contacts.show', $contact) }}--}}" class="detail-btn">詳細</a></td>

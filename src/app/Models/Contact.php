@@ -27,4 +27,14 @@ class Contact extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getGenderLabelAttribute()
+    {
+        return match ($this->gender) {
+            1 => '男性',
+            2 => '女性',
+            3 => 'その他',
+            default => '不明',
+        };
+    }
+
 }
