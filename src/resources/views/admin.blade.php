@@ -58,22 +58,15 @@
         </form>
     </div>
 
-    <div class="search-form__utility">
-        <div class="export-section">
-            <a href="{{--{{ route('admin.contacts.export') }}--}}" class="export-btn">エクスポート</a>
-        </div>
-        <div class="pagination-top">
-            <div class="pagination">
-                <a href="#" class="prev">&lt;</a>
-                <a href="#" class="page active">1</a>
-                <a href="#" class="page">2</a>
-                <a href="#" class="page">3</a>
-                <a href="#" class="page">4</a>
-                <a href="#" class="page">5</a>
-                <a href="#" class="next">&gt;</a>
-            </div>
-        </div>
+    <div class="export-form">
+        <form action="" method="post">
+            @csrf
+            <input class="export__btn btn" type="submit" value="エクスポート">
+        </form>
+        {{ $contacts->appends(request()->query())->links('vendor.pagination.custom') }}
     </div>
+
+
 
     <div class="contacts-table">
         <table>
@@ -83,21 +76,23 @@
                     <th class="header-gender">性別</th>
                     <th class="header-mail">メールアドレス</th>
                     <th class="header-detail">お問い合わせの種類</th>
-                    <th class="header-modal">詳細</th>
+                    <th class="header-modal"></th>
                 </tr>
             </thead>
+            @foreach($contacts as $contact)
             <tbody>
-                @foreach($contacts as $contact)
                 <tr>
-                    <td>{{  $contact->first_name }}{{ $contact->last_name  }}</td>
+                    <td>{{  $contact->first_name }} {{ $contact->last_name  }}</td>
                     <td>{{ $contact->getGenderLabelAttribute() }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->detail }}</td>
-                    <td><a href="{{--{{ route('admin.contacts.show', $contact) }}--}}" class="detail-btn">詳細</a></td>
+                    <td><a href="#modal-1" class="modal-open">詳細</a></td>
                 </tr>
-                @endforeach
             </tbody>
+            @endforeach
         </table>
+
+
     </div>
 </div>
 @endsection
