@@ -77,7 +77,7 @@
                     <td>{{  $contact->first_name }} {{ $contact->last_name  }}</td>
                     <td>{{ $contact->getGenderLabelAttribute() }}</td>
                     <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->detail }}</td>
+                    <td>{{ $contact->category->content }}</td>
                     <td><a href="#modal-1" class="modal-open">詳細</a></td>
                 </tr>
             </tbody>
