@@ -18,41 +18,33 @@
 @section('content')
 <div class="container">
     <h2>Admin</h2>
-    
     <div class="search-form">
-        <form action="" method="GET">
+        <form action="/search" method="GET">
+        @csrf
             <div class="search-row">
-                <input type="text" name="name_email" placeholder="名前やメールアドレスを入力してください" value="{{--{{ request('name_email') }}--}}">
-                
+                <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
                 <div class="select-wrapper">
                     <select name="gender">
-                        <option value="">性別</option>
-                        <option value="男性" {{--{{ request('gender') == '男性' ? 'selected' : '' }}--}}>男性</option>
-                        <option value="女性" {{--{{ request('gender') == '女性' ? 'selected' : '' }}--}}>女性</option>
-                        <option value="その他" {{--{{ request('gender') == 'その他' ? 'selected' : '' }}--}}>その他</option>
+                        <option disabled selected>性別</option>
+                        <option value="1" @if( request('gender')==1 ) selected @endif>男性</option>
+                        <option value="2" @if( request('gender')==2 ) selected @endif>女性</option>
+                        <option value="3" @if( request('gender')==3 ) selected @endif>その他</option>
                     </select>
                 </div>
-                
                 <div class="select-wrapper">
                     <select name="category_id">
-                        <option value="">お問い合わせの種類</option>
+                        <option disabled selected>お問い合わせの種類</option>
                         @foreach($categories as $category)
-                        <option value="{{ $category['id'] }}">
-                            {{ $category['content'] }}
-                        </option>
+                        <option value="{{ $category->id }}" @if( request('category_id')==$category->id ) selected @endif>{{ $category->content }}</option>
                         @endforeach
                     </select>
                 </div>
-                
                 <div class="date-wrapper">
-                    <select name="date">
-                        <option value="">年/月/日</option>
-                        <!-- 日付オプションはJavaScriptで動的に生成するか、Bladeで生成 -->
-                    </select>
+                    <input class="serch-form__date" type="date" name="date" value="{{request('date')}}"  >
                 </div>
                 <div class="button-wrapper">
                     <button type="submit" class="search-btn">検索</button>
-                    <button type="button" class="reset-btn" onclick="">リセット</button>
+                    <input class="reset-btn" type="submit" value="リセット" name="reset">
                 </div>
             </div>
         </form>

@@ -59,10 +59,11 @@ th {
 
 .search-btn:hover {
     background-color: #776a59;
+    border-color: #8a7a66;
 }
 
 .reset-btn {
-    background-color: #c9b8a6;
+    background-color: #8a7a66;
     color: white;
 }
 
@@ -164,13 +165,23 @@ th {
     text-decoration: none;
 }
 
-.pagination__link {
-    text-decoration: none;
-}
 
 .active {
     padding: 4px 12px;
     border: 1px solid #8B7969;
     background-color: #8B7969;
     color: #fff;
+}
+
+
+.date-wrapper {
+    min-width: 140px;
+}
+
+.serch-form__date {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #F4F4F4;
+    border: solid 1px #e3ded9;
+
 }
