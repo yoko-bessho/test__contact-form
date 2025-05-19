@@ -1,11 +1,8 @@
 <?php
 
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +28,6 @@ Route::get('/auth/register', [ContactController::class, 'register']);
 Route::middleware('auth')->group(function() {
   Route::get('/admin', [ContactController::class, 'admin']);
   Route::get('/search', [ContactController::class, 'search']);
+  Route::delete('/delete', [ContactController::class, 'destroy']);
+  Route::post('/export', [ContactController::class, 'export']);
 });

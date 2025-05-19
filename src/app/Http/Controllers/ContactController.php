@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Category;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use symforny\Component\HttpFoundation\Rsponse;
 
 class ContactController extends Controller
 {
@@ -72,9 +76,16 @@ class ContactController extends Controller
     {
         $contacts = Contact::with('category')->Paginate(7);
         $categories = Category::all();
+        $csvData = Contact::all();
 
-        return view('admin', compact('contacts', 'categories'));
+        return view('admin', compact('contacts', 'categories', 'csvData'));
 
+    }
+
+    public function destroy(Request $request)
+    {
+        Contact::find($request->id)->delete();
+        return redirect('admin');
     }
 
     public function search(Request $request)
@@ -86,8 +97,45 @@ class ContactController extends Controller
         $query = $this->getSearchQuery($request, $query);
 
         $contacts = $query->paginate(7);
+        $csvData = $query->get();
         $categories = Category::all();
-        return view('admin', compact('contacts', 'categories'));
+        return view('admin', compact('contacts', 'categories', 'csvData'));
+    }
+
+    public function export(Request $request)
+    {
+        $query = Contact::query();
+        $query = $this->getSearchQuery($request, $query);
+        $csvData = $query->get()->toArray();
+        $csvHeader = [
+            'id',
+            'category_id',
+            'first_name',
+            'last_name',
+            'gender',
+            'email',
+            'tel',
+            'address',
+            'building',
+            'detail',
+            'created_at',
+            'updated_at',
+        ];
+        $response = new StreamedResponse(function()use ($csvHeader, $csvData) {
+            $createCsvFile = fopen('php://output', 'w');
+            mb_convert_variables('SJIS-win', 'UTF-8', $csvHeader);
+            fputcsv($createCsvFile, $csvHeader);
+            foreach ($csvData as $csv) {
+                $csv['created_at'] = Date::make($csv['created_at'])->setTimezone('Asia/tokyo')->format('Y/m/d H:i:s');
+                $csv['updated_at'] = Date::make($csv['updated_at'])->setTimezone('Asia/tokyo')->format('Y/m/d H:i:s');
+                fputcsv($createCsvFile, $csv);
+            }
+            fclose($createCsvFile);
+        }, 200, [
+            'Content-Type' => 'text_csv',
+            'Content-Disposition' => 'attachment; filename="contacts.csv"',
+        ]);
+        return $response;
     }
 
     private function getSearchQuery($request, $query)
@@ -113,4 +161,4 @@ class ContactController extends Controller
 
         return $query;
     }
-}
+};

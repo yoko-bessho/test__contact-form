@@ -51,7 +51,8 @@
     </div>
 
     <div class="export-form">
-        <form action="" method="post">
+        <form action="{{ '/export?
+        ' .http_build_query(request()->query()) }}" method="post">
             @csrf
             <input class="export__btn btn" type="submit" value="エクスポート">
         </form>
@@ -78,13 +79,55 @@
                     <td>{{ $contact->getGenderLabelAttribute() }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->category->content }}</td>
-                    <td><a href="#modal-1" class="modal-open">詳細</a></td>
+                    <td><a href="#{{ $contact->id }}" class="modal-open">詳細</a></td>
                 </tr>
+                <div class="modal" id="{{ $contact->id }}">
+                <a href="#!" class="modal-overlay"></a>
+                <div class="modal__inner">
+                    <div class="modal__content">
+                        <form class="modal__delete-form" action="/delete" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">お名前</label>
+                                <p>{{ $contact->first_name }} {{ $contact->last_name }}</p>
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">性別</label>
+                                <p>{{ $contact->getGenderLabelAttribute() }}</p>
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">メールアドレス</label>
+                                <p>{{ $contact->email }}</p>
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">電話番号</label>
+                                <p>{{ $contact->tell }}</p>
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">住所</label>
+                                <p>{{ $contact->address }}</p>
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">お問い合わせの種類</label>
+                                <p>{{ $contact->category->content }}</p>
+                                
+                            </div>
+                            <div class="modal-form__group">
+                                <label class="modal-form__label">お問い合わせの内容</label>
+                                <p>{{ $contact->detail }}</p>
+                            </div>
+                            <input type="hidden" name="id" value="{{ $contact->id }}">
+                            <input class="modal-form__delete-btn btn" type="submit" value="削除">
+
+                        </form>
+                    </div>
+                    <a href="#" class="modal__close-btn">✖️</a>
+                </div>
+                </div>
             </tbody>
             @endforeach
         </table>
-
-
     </div>
 </div>
 @endsection
