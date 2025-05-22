@@ -31,6 +31,7 @@ laravel環境構築
 
 
 ## ER図
+<img width="396" alt="スクリーンショット 2025-05-22 11 25 26" src="https://github.com/user-attachments/assets/e213cde6-97b2-460b-954e-dd4bbf32b126" />
 
  contact.drawio.png を参照ください。
 
